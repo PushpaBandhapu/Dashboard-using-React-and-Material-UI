@@ -1,6 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import React, { useEffect, useState } from "react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { Card, CardContent } from "@mui/material";
 
 ChartJS.register(
   CategoryScale,
@@ -16,26 +26,26 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top',
+      position: "top",
     },
     title: {
       display: true,
-      text: 'US Population Over Time',
+      text: "US Population Over Time",
       font: {
         size: 18,
-        weight: 'bold'
-      }
+        weight: "bold",
+      },
     },
   },
   scales: {
     x: {
       title: {
         display: true,
-        text: 'Year',
+        text: "Year",
         font: {
           size: 14,
-          weight: 'bold'
-        }
+          weight: "bold",
+        },
       },
       grid: {
         display: false,
@@ -44,30 +54,30 @@ export const options = {
     y: {
       title: {
         display: true,
-        text: 'Population',
+        text: "Population",
         font: {
           size: 14,
-          weight: 'bold'
-        }
+          weight: "bold",
+        },
       },
       grid: {
-        color: 'rgba(0, 0, 0, 0.1)',
+        color: "rgba(0, 0, 0, 0.1)",
       },
-    }
+    },
   },
   elements: {
     point: {
       radius: 3,
-      backgroundColor: 'rgb(0, 255, 0)',
+      backgroundColor: "rgb(0, 255, 0)",
       borderWidth: 1,
-      borderColor: 'rgb(0, 255, 0)',
+      borderColor: "rgb(0, 255, 0)",
     },
     line: {
       borderWidth: 2,
-      borderColor: 'rgb(0, 255, 0)',
+      borderColor: "rgb(0, 255, 0)",
       tension: 0.3,
       fill: false,
-    }
+    },
   },
 };
 
@@ -77,27 +87,31 @@ function LineGraph() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://datausa.io/api/data?drilldowns=Nation&measures=Population');
+        const response = await fetch(
+          "https://datausa.io/api/data?drilldowns=Nation&measures=Population"
+        );
         const json = await response.json();
         if (json && json.data && Array.isArray(json.data)) {
-          const labels = json?.data?.map(item => item.Year);
-          const values = json?.data?.map(item => item.Population);
+          const labels = json?.data?.map((item) => item.Year);
+          const values = json?.data?.map((item) => item.Population);
 
           setLineData({
             labels: labels,
             datasets: [
               {
-                label: 'US Population',
+                label: "US Population",
                 data: values,
               },
             ],
           });
-
         } else {
-          console.error('API response does not contain expected data structure:', json);
+          console.error(
+            "API response does not contain expected data structure:",
+            json
+          );
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -105,9 +119,13 @@ function LineGraph() {
   }, []);
 
   return (
-    <div style={{ width: '600px'}}>
-      {lineData && <Line options={options} data={lineData}/>}
-    </div>
+    <Card>
+      <CardContent>
+      <div style={{ width: "600px" }}>
+        {lineData && <Line options={options} data={lineData} />}
+      </div>
+      </CardContent>
+    </Card>  
   );
 }
 
