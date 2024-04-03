@@ -7,6 +7,7 @@ import TradeButton from "./components/TradeButton";
 import LineGraph from "./components/LineGraph";
 import SideNavBar from "./components/SideNavBar/SideNavBar";
 import Cards from "./components/Cards"
+import WalletConnectComponent from './components/WalletConnectComponent';
 
 export default function App() {
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
@@ -31,7 +32,6 @@ export default function App() {
     <ThemeProvider theme={darkTheme}>
     <CssBaseline />
       <>
-        <CssBaseline />
         <Container maxWidth="xl" style={{ margin: 0, padding: 0}}>
           <Grid container spacing={2}>
             <Grid item xs={2}>
@@ -40,6 +40,7 @@ export default function App() {
             <Grid item xs={10}>
               <Card sx={{ height: '100%' }}>
                 <CardContent>
+                <WalletConnectComponent/>
                 <Grid container justifyContent="space-between" alignItems="center">
                   <div>
                   <Switch checked={toggleDarkMode} onChange={toggleDarkTheme} />
