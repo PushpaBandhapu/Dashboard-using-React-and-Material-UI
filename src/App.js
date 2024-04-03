@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import Dashboard from './components/SideNavBar/Dashboard';
+import Dashboard from './components/Dashboard';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Switch } from "@mui/material";
 import CssBaseline from '@mui/material/CssBaseline';
