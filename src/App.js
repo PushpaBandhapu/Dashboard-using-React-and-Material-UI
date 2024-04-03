@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import { Typography, Switch, Grid, Container, Card, CardContent } from "@mui/material";
-import WavingHandIcon from '@mui/icons-material/WavingHand';
+import {React, useState} from 'react';
+import Dashboard from './components/Dashboard';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import TradeButton from "./components/TradeButton";
-import LineGraph from "./components/LineGraph";
-import SideNavBar from "./components/SideNavBar/SideNavBar";
-import Cards from "./components/Cards"
+import { Switch } from "@mui/material";
+import CssBaseline from '@mui/material/CssBaseline';
 import WalletConnectComponent from './components/WalletConnectComponent';
 
 export default function App() {
@@ -16,7 +12,7 @@ export default function App() {
     setToggleDarkMode(!toggleDarkMode);
   };
 
-   const darkTheme = createTheme({
+  const darkTheme = createTheme({
     palette: {
       mode: toggleDarkMode ? 'dark' : 'light', //default theme
       primary: {
@@ -30,39 +26,14 @@ export default function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-    <CssBaseline />
-      <>
-        <Container maxWidth="xl" style={{ margin: 0, padding: 0}}>
-          <Grid container spacing={2}>
-            <Grid item xs={2}>
-              <SideNavBar />
-            </Grid>
-            <Grid item xs={10}>
-              <Card sx={{ height: '100%' }}>
-                <CardContent>
-                <WalletConnectComponent/>
-                <Grid container justifyContent="space-between" alignItems="center">
-                  <div>
-                  <Switch checked={toggleDarkMode} onChange={toggleDarkTheme} />
-                    <Typography variant="h5">Hello, Brooklyn Simmons
-                    <WavingHandIcon />
-                    </Typography>
-                    <Typography variant="h6">Welcome to spot trading</Typography>
-                  </div>
-                  <div>
-                    <TradeButton />
-                  </div>
-                </Grid>
-                </CardContent>
-              <LineGraph />
-              <Cards />
-              </Card>              
-            </Grid>
-          </Grid>           
-        </Container>      
-      </>
+      <CssBaseline />
+        <Dashboard />
+        <div>
+            <WalletConnectComponent/>          
+            <Switch checked={toggleDarkMode} onChange={toggleDarkTheme}/>
+        </div>
     </ThemeProvider>
+        
     
   )
 }
-
