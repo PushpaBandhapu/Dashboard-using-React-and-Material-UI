@@ -3,6 +3,7 @@ import Dashboard from './components/Dashboard';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Switch } from "@mui/material";
 import CssBaseline from '@mui/material/CssBaseline';
+import WalletConnectComponent from './components/WalletConnectComponent';
 
 export default function App() {
   const [toggleDarkMode, setToggleDarkMode] = useState(true);
@@ -26,10 +27,11 @@ export default function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
+        <Dashboard />
         <div>
+            <WalletConnectComponent/>          
             <Switch checked={toggleDarkMode} onChange={toggleDarkTheme}/>
         </div>
-        <Dashboard />
     </ThemeProvider>
         
     

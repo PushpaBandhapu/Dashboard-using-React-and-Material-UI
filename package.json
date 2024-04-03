@@ -42,5 +42,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@tanstack/react-query": "^5.28.14",
+    "@web3modal/siwe": "^4.1.4",
+    "@web3modal/wagmi": "^4.1.4",
+    "viem": "^2.9.8",
+    "wagmi": "^2.5.18"
   }
 }
