@@ -1,39 +1,13 @@
-import {React, useState} from 'react';
-import Dashboard from './components/Dashboard';
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Switch } from "@mui/material";
-import CssBaseline from '@mui/material/CssBaseline';
-import WalletConnectComponent from './components/WalletConnectComponent';
+import { React } from "react";
+import Dashboard from "./components/dashboard/Dashboard";
+import CssBaseline from "@mui/material/CssBaseline";
+import { DarkModeProvider } from "./components/globalcontext/DarkModeProvider";
 
 export default function App() {
-  const [toggleDarkMode, setToggleDarkMode] = useState(true);
-
-  const toggleDarkTheme = () => {
-    setToggleDarkMode(!toggleDarkMode);
-  };
-
-  const darkTheme = createTheme({
-    palette: {
-      mode: toggleDarkMode ? 'dark' : 'light', //default theme
-      primary: {
-        main: '#90caf9',
-      },
-      secondary: {
-        main: '#f48fb1',
-      },
-    },
-  });
-
   return (
-    <ThemeProvider theme={darkTheme}>
+    <DarkModeProvider>
       <CssBaseline />
-        <Dashboard />
-        <div>
-            <WalletConnectComponent/>          
-            <Switch checked={toggleDarkMode} onChange={toggleDarkTheme}/>
-        </div>
-    </ThemeProvider>
-        
-    
-  )
+      <Dashboard />     
+    </DarkModeProvider>
+  );
 }
