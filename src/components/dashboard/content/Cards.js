@@ -62,7 +62,7 @@ const FetchCard = () => {
                       columnGap: "10px",
                     }}
                   >
-                    <Avatar sx={{ bgcolor: pink[500] }}>
+                    <Avatar sx={{ bgcolor: '#fec900' }}>
                       <Typography variant="h5">
                         <span
                           dangerouslySetInnerHTML={{

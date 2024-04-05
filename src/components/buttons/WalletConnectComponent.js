@@ -34,12 +34,16 @@ createWeb3Modal({
   enableOnramp: true 
 })
 
-export default function WalletConnectComponent({ children }) {
+
+
+
+export default function WalletConnectComponent({ className, style }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>    
-        <w3m-button />
+        {/* Pass the className or style down to the w3m-button */}
+        <w3m-button className={className} style={style} />
       </QueryClientProvider>
     </WagmiProvider>
-  )
+  );
 }

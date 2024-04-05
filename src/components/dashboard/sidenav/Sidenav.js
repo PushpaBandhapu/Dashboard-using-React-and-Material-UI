@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { styled, useTheme, alpha } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import Box from '@mui/material/Box';
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 
@@ -10,12 +11,15 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import MenuIcon from '@mui/icons-material/Menu';
+import WaterDropTwoToneIcon from '@mui/icons-material/WaterDropTwoTone';
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Avatar from "@mui/material/Avatar";
 import MenuList from "./MenuList";
+
 
 const drawerWidth = 240;
 
@@ -43,8 +47,7 @@ const closedMixin = (theme) => ({
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
+  justifyContent: "space-between",
   ...theme.mixins.toolbar,
 }));
 
@@ -77,24 +80,23 @@ export default function Sidenav() {
     <Drawer variant="permanent" open={open}>
 
       <DrawerHeader>
-        <Typography variant="h6" style={{ marginRight: "30px" }}>
-          <AcUnitIcon />
-          CarbonCell
-        </Typography>
-        <IconButton onClick={handleDrawerState}>
-          {theme.direction === "rtl" ? (
-            <ChevronRightIcon />
-          ) : (
-            <ChevronLeftIcon />
-          )}
+        <IconButton onClick={handleDrawerState} sx={{ marginRight: 'auto' }}> {/* This pushes everything else to the right */}
+          <MenuIcon />
         </IconButton>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <WaterDropTwoToneIcon sx={{ color: '#add24d', fontSize: '3rem' }} />
+          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: '1' }}>
+            <Typography variant="h6" sx={{ color: '#add24d', marginBottom: '-0.35em' }} noWrap>Carbon</Typography>
+            <Typography variant="h6" sx={{ color: '#add24d' }} noWrap>Cell</Typography>
+          </div>
+        </div>
       </DrawerHeader>
 
-      <Divider />
+      <Divider/>
 
       <MenuList open={open} />
       
-      <Card sx={{ maxWidth: 395 }} className="navBottomCard">
+      <Card sx={{ maxWidth: 395, }} className="navBottomCard">
         <CardHeader
           avatar={
             <Avatar

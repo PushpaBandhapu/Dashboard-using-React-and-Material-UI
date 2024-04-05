@@ -32,7 +32,7 @@ export default function MenuList({open}){
         { icon: <ImportExportIcon />, name: "Trade" },
         { icon: <HourglassEmptyIcon />, name: "History" },
         { icon: <WalletIcon />, name: "Wallet" },
-        { icon: <LanguageIcon />, name: "Assets" },
+        { spacer: true },
         { icon: <NotificationsNoneIcon />, name: "Notifications" },
         { icon: <ContactSupportIcon />, name: "Support" },
         { icon: <SettingsIcon />, name: "Settings" },
@@ -41,13 +41,17 @@ export default function MenuList({open}){
     return(
         <List>
         {menuList.map((item, index) => (
+          item.spacer ? (
+            // Render a spacer if the item is marked as a spacer
+            <div key={index} style={{ height: 100, }} /> 
+          ) : (
           <ListItem
             key={index}
             disablePadding
             sx={{
               display: "block",
-              backgroundColor:
-                activeItem === item.name ? "green" : "transparent",
+              color:
+                activeItem === item.name ? "green" : "transperent",
             }}
             onClick={() => handleItemClick(item.name)}
           >
@@ -63,6 +67,8 @@ export default function MenuList({open}){
                   minWidth: 0,
                   mr: open ? 3 : "auto",
                   justifyContent: "center",
+                  color:
+                   activeItem === item.name ? "green" : "transperent",
                 }}
               >
                 {item.icon}
@@ -73,6 +79,7 @@ export default function MenuList({open}){
               />
             </ListItemButton>
           </ListItem>
+          )
         ))}
         </List>
     )

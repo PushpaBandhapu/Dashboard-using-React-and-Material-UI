@@ -4,13 +4,18 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 // Create the Theme Context
 const DarkModeContext = createContext();
 
-// Provider Component
- const DarkModeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
+const DarkModeProvider = ({ children }) => {
+  // Initialize darkMode state with the value from localStorage if it exists, otherwise default to true
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode !== null ? savedMode === 'true' : true;
+  });
 
   // Function to toggle dark mode
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
+    // Save the user's theme preference to localStorage
+    localStorage.setItem('darkMode', (!darkMode).toString());
   };
 
   // Theme configuration
@@ -26,6 +31,7 @@ const DarkModeContext = createContext();
     </DarkModeContext.Provider>
   );
 };
+
 
 // Custom hook to access the Dark Mode context
  const useDarkMode = () => {
